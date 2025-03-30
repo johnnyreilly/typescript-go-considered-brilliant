@@ -40,7 +40,7 @@ The TypeScript team has always cared about performance, particularly in the area
 
 What are the implications of these changes to the TypeScript ecosystem? Put simply: a faster VS Code and faster builds.
 
-Where I work, in Investec, we have many engineers who use VS Code and spend part of their engineering life writing TypeScript and JavaScript. All those engineers will benefit from a snappier development experience. When they open up a project in VS Code, the time taken for the language service to wake up will drop dramatically. As they refactor their code, the experience will be faster. The "time to red squiggly line" metric will decrease. And that's a good thing.
+Where John works, at Investec, there are many engineers who use VS Code, and spend part of their engineering life writing TypeScript and JavaScript. All those engineers will benefit from a snappier development experience. When they open up a project in VS Code, the time taken for the language service to wake up will drop dramatically. As they refactor their code, the experience will be faster. The "time to red squiggly line" metric will decrease. And that's a good thing.
 
 As a consequence, engineers should be incrementally more effective, given that there are less pauses in their workflow.
 
@@ -50,7 +50,9 @@ This, of course, is not Investec or Bloomberg specific. Rather this is a general
 
 ## The TypeScript team stop writing TypeScript
 
+Many languages have [bootstrapping compilers](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)). The compiler is written in the program language that is the compiler for. TypeScript has been an example of this since it was first open sourced. That is about to change; the compiler will stop being written in TypeScript and will start being written in Golang. This is possibly the first example of a language moving away from having a bootstrapping compiler.
 
+Of all the aspects about the Golang port, this one was the one that caused John most anxiety. The TypeScript team will be moving away from writing TypeScript in their day to day lives. This means there is reduced [dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) - which means a reduction in direct feedback to the makers of TypeScript.
 
 TypeScript team won't be writing TS themselves - could this distance them from the community?
 Probably not - community is too established to let this happen 
