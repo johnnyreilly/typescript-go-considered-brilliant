@@ -54,10 +54,16 @@ Many languages have [bootstrapping compilers](https://en.wikipedia.org/wiki/Boot
 
 Of all the aspects about the Golang port, this one was the one that caused John most anxiety. The TypeScript team will be moving away from writing TypeScript in their day to day lives. This means there is reduced [dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) - which means a reduction in direct feedback to the makers of TypeScript.
 
-TypeScript team won't be writing TS themselves - could this distance them from the community?
-Probably not - community is too established to let this happen 
-Also they've written atypical TS for most of that time due to lack of modules until 5.0
-Wonder if it might reduce the TypeScript teams involvement with TC39 as they will have less of a stake in the direct usage of JavaScript, at least as consumers if not producers
+Given how broad the TypeScript community is, this is perhaps not the concern that it might be. The team are very connected with the community and even if they are writing TypeScript less, people who are writing more will be sure to be vocal. It's maybe worth remembering that for most of the time TypeScript has been around, the team has often written TypeScript in a style that is not representative of the broader community.  We're thinking here of modules.  Until Jake Bailey's mammoth work to [migrate the TypeScript codebase to use modules](https://devblogs.microsoft.com/typescript/typescripts-migration-to-modules/), the codebase used namespaces.  This didn't stop TypeScript working with ES Modules at all.  So it seems reasonable we need not fear.
+
+Another angle on this, is wondering if the TypeScript team might become less involved with TC39 (the committee that develops the JavaScript language specification).  ASHLEY SAY THINGS!
+
+ as they will have less of a stake in the direct usage of JavaScript, at least as consumers if not producers
+
+## Go a good choice?
+
+The internet is mad it's not Rust. But that section of the internet is mad that everything isn't Rust.
+
 Not rust. Pragmatic choice though 
 Swc was enough for me
 Maybe bun is going to give us the perf but nope
