@@ -18,7 +18,7 @@ Ashley is ....
 
 It's useful to think about what the Go port meaningfully changes. 
 
-Josh Goldberg has [provided a useful framing on different aspects of TypeScript](https://learning-typescript-git-what-is-7c9279-josh-goldbergs-projects.vercel.app/articles/what-is-typescript). It's four things:
+Josh Goldberg has [provided a useful framing on different aspects of TypeScript](https://www.learningtypescript.com/articles/what-is-typescript). It's four things:
 1. Language
 2. Type Checker
 3. Compiler
