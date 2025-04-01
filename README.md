@@ -1,6 +1,6 @@
-# TypeScript-Go considered brilliant
+# TypeScript Go considered brilliant
 
-TypeScript is being ported to Go. It's quite likely that you know this by now, as there have been excellent communications from the TypeScript team in a variety of forums. Hats off; it's been an object lesson in how to communicate well; straightforward, clear and open.
+TypeScript is being ported to Go. This is known as "TypeScript 7". It's quite likely that you know this by now, as there have been excellent communications from the TypeScript team in a variety of forums. Hats off; it's been an object lesson in how to communicate well; straightforward, clear and open.
 
 There's no shortage of content out there detailing what is known about the port. This piece is not that. Rather, it's the reflections of two people in the TypeScript community. What our thoughts, feelings and reflections on the port are.
 
@@ -24,7 +24,7 @@ Josh Goldberg has [provided a useful framing on different aspects of TypeScript]
 
 The language and type checker are unaffected by the port. Syntax is unchanged. You'll still be writing `type`s and `interfaces`s as you were before. No difference.
 
-The same applies to the type checker. Code that failed to type check before, will still fail to type check with TypeScript-Go:
+The same applies to the type checker. Code that failed to type check before, will still fail to type check with TypeScript 7:
 
 ```ts
 const i: number = "not actually a number";
@@ -64,7 +64,19 @@ This will have an impact on ecosystem tooling.  John is the maintainer of [`ts-l
 
 In fact, in John went so far as to comment as such on [Bluesky in early March](https://bsky.app/profile/johnnyreilly.com/post/3ljexijnmdk2m):
 
+![screenshot of Bluesky post talking about TypeScript stability](screenshot-typescript-is-rock-solid.png)
 
+Only to have the TypeScript team effectively come out and say "hold my beer". 
+
+It's very early days, but we know for sure that the internal APIs of TypeScript (that `ts-loader` depends upon) will change massively. `ts-loader` has two modes of operation:
+1. With type checking
+2. Without type checking; transpilation only
+
+It's very unlikely that TypeScript 7 will work with `ts-loader`s type checking mode, without significant refactoring. It's possible that `ts-loader` might be able to support transpilation only mode with minimal changes. What does this mean for the future of `ts-loader` (and by extension, other tooling built on TypeScript)? Well, there will be an impact.  This might be the natural end of the road for `ts-loader`.  It's also possible that it could continue onwards, but supporting transpilation only. But that is uncertain.  Also, there already alternatives that perform that role, such as `esbuild-loader` and `swc-loader`.  
+
+Some tooling will have a natural path forwards.  For instance, `typescript-eslint` will continue onwards with TypeScript 7. [CHECK WITH JOSH]
+
+But tooling that depends upon internal TypeScript APIs that are going to radically change may cease to be in their current forms.  It will vary project by project, but expect change. And this is fine.  Change is a constant.
 
 ## Was Go a good choice?
 
