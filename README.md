@@ -74,9 +74,9 @@ It's very early days, but we know for sure that the internal APIs of TypeScript 
 
 It's very unlikely that TypeScript 7 will work with `ts-loader`s type checking mode, without significant refactoring. It's possible that `ts-loader` might be able to support transpilation only mode with minimal changes. What does this mean for the future of `ts-loader` (and by extension, other tooling built on TypeScript)? Well, there will be an impact.  This might be the natural end of the road for `ts-loader`.  It's also possible that it could continue onwards, but supporting transpilation only. But that is uncertain.  Also, there already alternatives that perform that role, such as `esbuild-loader` and `swc-loader`.  
 
-Some tooling will have a natural path forwards.  For instance, `typescript-eslint` will continue onwards with TypeScript 7. [CHECK WITH JOSH]
+Some tooling will have a natural path forwards.  For instance, `typescript-eslint` will continue onwards with TypeScript 7. The TypeScript team are planning to help with typed linting with the new, faster APIs.  So this means that ESLint (which many people are used to using), will become faster, as TypeScript becomes faster.  
 
-But tooling that depends upon internal TypeScript APIs that are going to radically change may cease to be in their current forms.  It will vary project by project, but expect change. And this is fine.  Change is a constant.
+However, it's likely that tooling that depends upon internal TypeScript APIs which are going to radically change, may cease to be in their current forms.  This will vary project by project, but expect change. And this is fine.  Change is a constant.
 
 ## Was Go a good choice?
 
@@ -87,12 +87,4 @@ If John was to guess what the team might have picked he would have either said R
 The Golang choice represents pragmatism; which is very much a TypeScript ethos. In fact if you look at the [TypeScript Design goals](https://github.com/microsoft/TypeScript/wiki/TypeScript-Design-Goals), you can see how TypeScript has always espoused a pragmatic approach. Perhaps most famously by having "soundness" as a "non-goal". Instead, striking a balance between correctness and productivity. 
 
 Pragmatism is the TypeScript way. Golang is a pragmatic choice.
-
-
-
-Not rust. Pragmatic choice though 
-Swc was enough for me
-Maybe bun is going to give us the perf but nope
-First language to start bootstrapping and then stop
-What about ts-loader? APIs not sure - maybe it's the end? Hotel California webpack 
 
