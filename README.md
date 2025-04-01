@@ -1,12 +1,10 @@
 # TypeScript-Go considered brilliant
 
-TypeScript is being ported to Go. It's quite likely that you know this by now, as there have been excellent communications from the TypeScript team in a variety of forums.
-
-It's been an object lesson in how to communicate well; straightforward, clear and open.
+TypeScript is being ported to Go. It's quite likely that you know this by now, as there have been excellent communications from the TypeScript team in a variety of forums. Hats off; it's been an object lesson in how to communicate well; straightforward, clear and open.
 
 There's no shortage of content out there detailing what is known about the port. This piece is not that. Rather, it's the reflections of two people in the TypeScript community. What our thoughts, feelings and reflections on the port are.
 
-It's going to be a somewhat unstructured wander through our reactions and hopes. Bucle up for opinions and feelings.
+It's going to be a somewhat unstructured wander through our reactions and hopes. Buckle up for opinions and feelings.
 
 ## Who are John Reilly and Ashley Claymore?
 
@@ -36,7 +34,7 @@ This is where the differences begin. The compiler and the language services do c
 
 Put your hands up if you don't care about performance. That's right, no hands went up. We all care about performance. If you ever have the misfortune to work with technology that lags, which breaks you out of flow as you are working, you notice it. It's almost the only thing you can notice.
 
-The TypeScript team has always cared about performance, particularly in the area of development tooling. Anders Hejlsberg in particular has mentioned in interviews, the needs for language servers to provide fast feedback as people work. Something measured in milliseconds and not seconds.
+The TypeScript team has always cared about performance, particularly in the area of development tooling. Anders Hejlsberg in particular has mentioned in interviews, the need for language servers to provide fast feedback as people work. Something measured in milliseconds and not seconds.
 
 What are the implications of these changes to the TypeScript ecosystem? Put simply: a faster VS Code and faster builds.
 
@@ -46,23 +44,39 @@ As a consequence, engineers should be incrementally more effective, given that t
 
 The same incremental gain applies to builds. As our engineers build applications, they run TypeScript builds on their machines and in a Continuous Integration context.  These will all be faster than they were before. We'll continually bank a performance improvement which is a benefit. 
 
-This, of course, is not Investec or Bloomberg specific. Rather this is a general improvement that everyone will benefit from.
+This, of course, is not Investec or Bloomberg specific. Rather this is a general improvement that everyone will benefit from. Across the world, wherever anyone writes and builds TypeScript, they will do so faster.
 
-## The TypeScript team stop writing TypeScript
+## The TypeScript team will write less TypeScript
 
-Many languages have [bootstrapping compilers](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)). The compiler is written in the program language that is the compiler for. TypeScript has been an example of this since it was first open sourced. That is about to change; the compiler will stop being written in TypeScript and will start being written in Golang. This is possibly the first example of a language moving away from having a bootstrapping compiler.
+Many languages have [bootstrapping compilers](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)). The compiler is written in the program language that it is the compiler for. TypeScript has been an example of this since it was first open sourced. That is about to change; the compiler will stop being written in TypeScript and will start being written in Golang. This is possibly the first example of a language moving away from having a bootstrapping compiler. This is done in the name of performance. 
 
-Of all the aspects about the Golang port, this one was the one that caused John most anxiety. The TypeScript team will be moving away from writing TypeScript in their day to day lives. This means there is reduced [dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) - which means a reduction in direct feedback to the makers of TypeScript.
+Of all the aspects about the Golang port, this one was the one that gave John most anxiety. (It's John writing this by the way, writing in the third person feels very strange.) The TypeScript team will be moving away from writing TypeScript in their day to day lives. They won't abandon it of course, but they will certainly write less TypeScript and more Golang. An implication of this is that there will be reduced [dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) - which means less direct feedback to the makers of TypeScript about what it's like to write TypeScript.
 
 Given how broad the TypeScript community is, this is perhaps not the concern that it might be. The team are very connected with the community and even if they are writing TypeScript less, people who are writing more will be sure to be vocal. It's maybe worth remembering that for most of the time TypeScript has been around, the team has often written TypeScript in a style that is not representative of the broader community.  We're thinking here of modules.  Until Jake Bailey's mammoth work to [migrate the TypeScript codebase to use modules](https://devblogs.microsoft.com/typescript/typescripts-migration-to-modules/), the codebase used namespaces.  This didn't stop TypeScript working with ES Modules at all.  So it seems reasonable we need not fear.
 
-Another angle on this, is wondering if the TypeScript team might become less involved with TC39 (the committee that develops the JavaScript language specification).  ASHLEY SAY THINGS!
+Another angle on this, is wondering if the TypeScript team might become less involved with TC39 (the committee that develops the JavaScript language specification). TypeScript have been instrumental in language development over the years, from `async` to decorators and beyond. As the TypeScript team will be writing less TypeScript, there's a view that they might become less directly involved in influencing the development of JavaScript.
 
- as they will have less of a stake in the direct usage of JavaScript, at least as consumers if not producers
+ASHLEY SAY THINGS!
 
-## Go a good choice?
+## Ecosystem tools
 
-The internet is mad it's not Rust. But that section of the internet is mad that everything isn't Rust.
+This will have an impact on ecosystem tooling.  John is the maintainer of [`ts-loader`](https://github.com/TypeStrong/ts-loader), a widely used webpack loader for TypeScript. This loader depends upon TypeScript APIs which have been unchanged in years. 
+
+In fact, in John went so far as to comment as such on [Bluesky in early March](https://bsky.app/profile/johnnyreilly.com/post/3ljexijnmdk2m):
+
+
+
+## Was Go a good choice?
+
+Given that TypeScript decided to move away from being written with TypeScript, many people had and have opinions on the language being picked: Go. The folk who like C# wish that the team had picked C#. Particularly given Anders' involvement with C#. Those people that like Rust would very much have liked for the team to have picked Rust.  Hopefully this is not unkind, but there is a section of the internet that seems to feel that everything should be written in Rust.
+
+If John was to guess what the team might have picked he would have either said Rust or Zig (what Bun is built with).  Golang felt like a slightly leftfield choice, but upon reflection it completely makes sense. ESBuild is written in Golang, so there's prior art. Golang has a garbage collector (Rust does not) which means the work of porting the code is not too significant.  Likewise, C# is all about `class`es and so a port from TypeScript (which does not use `class`es in the compiler codebase) to C# would be uphill work. 
+
+The Golang choice represents pragmatism; which is very much a TypeScript ethos. In fact if you look at the [TypeScript Design goals](https://github.com/microsoft/TypeScript/wiki/TypeScript-Design-Goals), you can see how TypeScript has always espoused a pragmatic approach. Perhaps most famously by having "soundness" as a "non-goal". Instead, striking a balance between correctness and productivity. 
+
+Pragmatism is the TypeScript way. Golang is a pragmatic choice.
+
+
 
 Not rust. Pragmatic choice though 
 Swc was enough for me
