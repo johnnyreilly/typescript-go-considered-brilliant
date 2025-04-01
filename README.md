@@ -8,7 +8,7 @@ It's going to be a somewhat unstructured wander through our reactions and hopes.
 
 ## Who are John Reilly and Ashley Claymore?
 
-John Reilly is a software engineer and an early adopter of TypeScript. He worked on Definitely Typed, the home of high quality type definitions which allow the integration of TypeScript and JavaScript. He wrote the history of Definitely Typed and featured in the TypeScript documentary. He also worked (and works) on ts-loader, the webpack loader for TypeScript. He works at Investec, a South African bank and is based in London. The greatest city on earth (in his opinion).
+John Reilly is a software engineer and an early adopter of TypeScript. He worked on Definitely Typed, the home of high quality type definitions which allow the integration of TypeScript and JavaScript. John wrote the [history of Definitely Typed](https://johnnyreilly.com/definitely-typed-the-movie) and featured in the TypeScript documentary. He also worked (and works) on ts-loader, the webpack loader for TypeScript. In his day job, he works at Investec, a South African bank and is based in London. The greatest city on earth (in his opinion).
 
 Ashley is ....
 
@@ -78,7 +78,7 @@ Some tooling will have a natural path forwards.  For instance, `typescript-eslin
 
 However, it's likely that tooling that depends upon internal TypeScript APIs which are going to radically change, may cease to be in their current forms.  This will vary project by project, but expect change. And this is fine.  Change is a constant.
 
-## Was Go a good choice?
+## Was Go a good language choice?
 
 Given that TypeScript decided to move away from being written with TypeScript, many people had and have opinions on the language being picked: Go. The folk who like C# wish that the team had picked C#. Particularly given Anders' involvement with C#. Those people that like Rust would very much have liked for the team to have picked Rust.  Hopefully this is not unkind, but there is a section of the internet that seems to feel that everything should be written in Rust.
 
@@ -88,3 +88,8 @@ The Golang choice represents pragmatism; which is very much a TypeScript ethos. 
 
 Pragmatism is the TypeScript way. Golang is a pragmatic choice.
 
+## Conclusion
+
+As you looked around the ecosystem, and saw the desire for performance that has been ever present for the last three years, some kind of port seemed inevitable. If we accept that, and I think we should, the way the team has started executing on the migration fills us with confidence. The TypeScript team are talented, pragmatists and wise.
+
+This is going to Go well.
