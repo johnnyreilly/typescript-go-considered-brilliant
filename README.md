@@ -78,6 +78,9 @@ Some tooling will have a natural path forwards.  For instance, `typescript-eslin
 
 However, it's likely that tooling that depends upon internal TypeScript APIs which are going to radically change, may cease to be in their current forms.  This will vary project by project, but expect change. And this is fine.  Change is a constant.
 
+quote Daniel from here:
+https://github.com/microsoft/typescript-go/discussions/455#discussion-8063819
+
 ## Was Go a good language choice?
 
 Given that TypeScript decided to move away from being written with TypeScript, many people had and have opinions on the language being picked: Go. The folk who like C# wish that the team had picked C#. Particularly given Anders' involvement with C#. Those people that like Rust would very much have liked for the team to have picked Rust.  Hopefully this is not unkind, but there is a section of the internet that seems to feel that everything should be written in Rust.
