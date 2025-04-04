@@ -1,6 +1,6 @@
 # TypeScript Go considered brilliant
 
-TypeScript is being ported to Go. This is known as "TypeScript 7". It's quite likely that you know this by now, as there have been excellent communications from the TypeScript team in a variety of forums. Hats off; it's been an object lesson in how to communicate well; straightforward, clear and open.
+TypeScript is being ported to Go. This is known as "TypeScript 7". It's quite likely that you know this by now, as there have been excellent communications from the TypeScript team in a variety of forums. In fact, hats off to the team; it's been an object lesson in how to communicate well; straightforward, clear and open.
 
 There's no shortage of content out there detailing what is known about the port. This piece is not that. Rather, it's the reflections of two people in the TypeScript community. What our thoughts, feelings and reflections on the port are.
 
@@ -12,11 +12,25 @@ John Reilly is a software engineer and an early adopter of TypeScript. He worked
 
 Ashley is ....
 
+## Was a port necessary?
+
+I mean, weren't we happy with each other anyway? Just as we were?  Yes, but also no. 
+
+If you're in the JavaScript / TypeScript ecosystem, recent years have been notable for the number of projects that have appeared to support JavaScript related development, but built in non-JavaScript languages.  We've had [esbuild](https://esbuild.github.io/), written in Golang.  We've had [SWC](https://swc.rs/), written in Rust.  We've had [Bun](https://bun.sh/), written in Zig.  We've had [Deno](https://deno.com/), written in Rust.
+
+The list goes on, and was getting longer and longer. All of these increased performance, which was and is a wonderful thing.  We'll talk more about performance later.  The hold-out was TypeScript. It remained being written in TypeScript. Whilst performance improvements did happen, and were an area of focus for the team, the level of improvements that happened were incremental; not transformative.
+
+You could see the impatience in the community, as people started making their own efforts to speed up TypeScript by building their own implementations.  Most notable here was [DongYoon Kang](https://github.com/kdy1/)
+
+https://kdy1.dev/2022-1-26-porting-tsc-to-go
+
+https://kdy1.dev/2022-10-27-open-sourcing-stc
+
+As you looked around the ecosystem, and saw the desire for performance that has been ever present for the last three years, some kind of port seemed inevitable. 
+
 ## Performance 
 
-It's useful to think about what the Go port meaningfully changes. 
-
-Josh Goldberg has [provided a useful framing on different aspects of TypeScript](https://www.learningtypescript.com/articles/what-is-typescript). It's four things:
+It's useful to think about what the Go port meaningfully changes about TypeScript. Josh Goldberg has [provided a useful framing on different aspects of TypeScript](https://www.learningtypescript.com/articles/what-is-typescript). It's four things:
 1. Language
 2. Type Checker
 3. Compiler
@@ -30,7 +44,7 @@ The same applies to the type checker. Code that failed to type check before, wil
 const i: number = "not actually a number";
 ```
 
-This is where the differences begin. The compiler and the language services do change. They become an order of magnitude faster.
+This is where the differences begin. The compiler and the language services do change. They become an order of magnitude faster. This is the motivation for the port.
 
 Put your hands up if you don't care about performance. That's right, no hands went up. We all care about performance. If you ever have the misfortune to work with technology that lags, which breaks you out of flow as you are working, you notice it. It's almost the only thing you can notice.
 
@@ -42,13 +56,13 @@ Where John works, at Investec, there are many engineers who use VS Code, and spe
 
 As a consequence, engineers should be incrementally more effective, given that there are less pauses in their workflow.
 
-The same incremental gain applies to builds. As our engineers build applications, they run TypeScript builds on their machines and in a Continuous Integration context.  These will all be faster than they were before. We'll continually bank a performance improvement which is a benefit. 
+The same incremental gain applies to builds. As engineers build applications, they run TypeScript builds on their machines and in a Continuous Integration context.  These will all be faster than they were before. We'll continually bank a performance improvement which is a benefit. 
 
 This, of course, is not Investec or Bloomberg specific. Rather this is a general improvement that everyone will benefit from. Across the world, wherever anyone writes and builds TypeScript, they will do so faster.
 
 ## The TypeScript team will write less TypeScript
 
-Many languages have [bootstrapping compilers](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)). The compiler is written in the program language that it is the compiler for. TypeScript has been an example of this since it was first open sourced. That is about to change; the compiler will stop being written in TypeScript and will start being written in Golang. This is possibly the first example of a language moving away from having a bootstrapping compiler. This is done in the name of performance. 
+Many languages have [bootstrapping compilers](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)). This means the compiler is written in the program language that it is the compiler for. TypeScript has been an example of this since it was first open sourced. That is about to change; the compiler will stop being written in TypeScript and will start being written in Golang. This is possibly the first example of a language moving away from having a bootstrapping compiler. This is done in the name of performance. 
 
 Of all the aspects about the Golang port, this one was the one that gave John most anxiety. (It's John writing this by the way, writing in the third person feels very strange.) The TypeScript team will be moving away from writing TypeScript in their day to day lives. They won't abandon it of course, but they will certainly write less TypeScript and more Golang. An implication of this is that there will be reduced [dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) - which means less direct feedback to the makers of TypeScript about what it's like to write TypeScript.
 
@@ -68,7 +82,11 @@ In fact, in John went so far as to comment as such on [Bluesky in early March](h
 
 Only to have the TypeScript team effectively come out and say "hold my beer". 
 
-It's very early days, but we know for sure that the internal APIs of TypeScript (that `ts-loader` depends upon) will change massively. `ts-loader` has two modes of operation:
+It's very early days, but we know for sure that the internal APIs of TypeScript (that `ts-loader` depends upon) will [change massively](https://github.com/microsoft/typescript-go/discussions/455#discussion-8063819). To quote Daniel Rosenwasser of the TypeScript team:
+
+> While we are porting most of the existing TypeScript compiler and language service, that does not necessarily mean that all APIs will be ported over.
+
+`ts-loader` has two modes of operation:
 1. With type checking
 2. Without type checking; transpilation only
 
@@ -77,9 +95,6 @@ It's very unlikely that TypeScript 7 will work with `ts-loader`s type checking m
 Some tooling will have a natural path forwards.  For instance, `typescript-eslint` will continue onwards with TypeScript 7. The TypeScript team are planning to help with typed linting with the new, faster APIs.  So this means that ESLint (which many people are used to using), will become faster, as TypeScript becomes faster.  
 
 However, it's likely that tooling that depends upon internal TypeScript APIs which are going to radically change, may cease to be in their current forms.  This will vary project by project, but expect change. And this is fine.  Change is a constant.
-
-quote Daniel from here:
-https://github.com/microsoft/typescript-go/discussions/455#discussion-8063819
 
 ## Was Go a good language choice?
 
