@@ -20,13 +20,9 @@ If you're in the JavaScript / TypeScript ecosystem, recent years have been notab
 
 The list goes on, and was getting longer and longer. All of these increased performance, which was and is a wonderful thing.  We'll talk more about performance later.  The hold-out was TypeScript. It remained being written in TypeScript. Whilst performance improvements did happen, and were an area of focus for the team, the level of improvements that happened were incremental; not transformative.
 
-You could see the impatience in the community, as people started making their own efforts to speed up TypeScript by building their own implementations.  Most notable here was [DongYoon Kang](https://github.com/kdy1/)
+You could see the impatience in the community, as people started making their own efforts to speed up TypeScript by building their own implementations.  Most notable here was [DongYoon Kang](https://github.com/kdy1/); the creator of SWC. SWC, amongst other things, implemented the transpilation aspect of TypeScript. Donny decided to see if he could implement the type checker as well, again using Rust. He then switched to [attempting a port using Go](https://kdy1.dev/2022-1-26-porting-tsc-to-go). After some time he then switched back to [https://kdy1.dev/2022-10-27-open-sourcing-stc](trying to implement in Rust).
 
-https://kdy1.dev/2022-1-26-porting-tsc-to-go
-
-https://kdy1.dev/2022-10-27-open-sourcing-stc
-
-As you looked around the ecosystem, and saw the desire for performance that has been ever present for the last three years, some kind of port seemed inevitable. 
+It didn't end up succeeding, but the fact there were people out there willing to try this demonstrated the desire for performance in the community. At some point a port was likely to succeed, and if it wasn't driven by the actual TypeScript team it would probably have landed the ecosystem in a tricky situation. Some kind of port of TypeScript to a language other than TypeScript seemed to be inevitable. And here we are.
 
 ## Performance 
 
@@ -108,6 +104,6 @@ Pragmatism is the TypeScript way. Golang is a pragmatic choice.
 
 ## Conclusion
 
-As you looked around the ecosystem, and saw the desire for performance that has been ever present for the last three years, some kind of port seemed inevitable. If we accept that, and I think we should, the way the team has started executing on the migration fills us with confidence. The TypeScript team are talented, pragmatists and wise.
+The ecosystem demanded a faster TypeScript. Performance cannot be ignored these days.  As a consequence, some kind of port of TypeScript was bound to happen. If we accept that view, and I think we should, then what next? Well, the way that the TypeScript team has started executing on the migration fills us with confidence. The TypeScript team are talented, pragmatists and wise.
 
 This is going to Go well.
