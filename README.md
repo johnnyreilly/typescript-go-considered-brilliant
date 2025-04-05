@@ -67,7 +67,7 @@ Given how broad the TypeScript community is, this is perhaps not the concern tha
 
 Another angle on this, is wondering if the TypeScript team might become less involved with TC39 (the committee that develops the JavaScript language specification). TypeScript have been instrumental in language development over the years, from optional chaining to decorators and beyond. As the TypeScript team will be writing less TypeScript, there's a view that they might become less directly involved in influencing the development of JavaScript.
 
-> Ashley is not worried about this. The Principal Product Manager of TypeScript, Daniel Rosenwasser, recently became one of the [two incoming TC39 Facilitators](https://github.com/tc39/agendas/blob/main/2025/TC39%20Chair%20Group%20Election%20-%20106th%20Meeting.pdf). The importance of having the TypeScript teams input into the evolution of JavaScript remains the same regardless of which language is used to implement TypeScript's analysis of JavaScript.
+Ashley is not worried about this. The Principal Product Manager of TypeScript, Daniel Rosenwasser, recently became one of the [two incoming TC39 Facilitators](https://github.com/tc39/agendas/blob/main/2025/TC39%20Chair%20Group%20Election%20-%20106th%20Meeting.pdf). The importance of having the TypeScript teams input into the evolution of JavaScript remains the same regardless of which language is used to implement TypeScript's analysis of JavaScript.
 
 ## Interacting with TypeScript
 
