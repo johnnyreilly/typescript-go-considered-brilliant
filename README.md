@@ -8,7 +8,7 @@ It's going to be a somewhat unstructured wander through our reactions and hopes.
 
 ## Who are John Reilly and Ashley Claymore?
 
-John Reilly is a software engineer and an early adopter of TypeScript. He worked on Definitely Typed, the home of high quality type definitions which allow the integration of TypeScript and JavaScript. John wrote the [history of Definitely Typed](https://johnnyreilly.com/definitely-typed-the-movie) and featured in the TypeScript documentary. He also worked (and works) on ts-loader, the webpack loader for TypeScript. In his day job, he works at Investec, a South African bank and is based in London. The greatest city on earth (in his opinion).
+John Reilly is a software engineer and an early adopter of TypeScript. He worked on Definitely Typed, the home of high quality type definitions which allow the integration of TypeScript and JavaScript. John wrote the [history of Definitely Typed](https://johnnyreilly.com/definitely-typed-the-movie) and featured in the TypeScript documentary. He also worked (and works) on `ts-loader`, the webpack loader for TypeScript. In his day job, he works at Investec, a South African bank and is based in London. The greatest city on earth (in his opinion).
 
 Ashley is a software engineer who has the pleasure of living not too far from John, occasionally joining him on his morning walks where we can kick start our day talking about TypeScript together. Ashley first started writing TypeScript when it was on version 1.8 and has thoroughly enjoyed following its evolution. He has [contributed to TypeScript](https://github.com/microsoft/TypeScript/pulls?q=author%3Aacutmore+is%3Aclosed) and works at Bloomberg as part of the JavaScript-infrastructure-and-tooling team. Opinions are his own.
 
@@ -22,7 +22,7 @@ The list goes on, and was getting longer and longer. All of these increased perf
 
 You could see the impatience in the community, as people started making their own efforts to speed up TypeScript by building their own implementations.  Most notable here was [DongYoon Kang](https://github.com/kdy1/); the creator of SWC. SWC, amongst other things, implemented the transpilation aspect of TypeScript. Donny decided to see if he could implement the type checker as well, again using Rust. He then switched to [attempting a port using Go](https://kdy1.dev/2022-1-26-porting-tsc-to-go). After some time he then switched back to [trying to implement in Rust](https://kdy1.dev/2022-10-27-open-sourcing-stc).
 
-It didn't end up succeeding, but the fact there were people out there willing to try this demonstrated the desire for performance in the community. At some point a port was likely to succeed, and if it wasn't driven by the actual TypeScript team it would probably have landed the ecosystem in a tricky situation. Some kind of port of TypeScript to a language other than TypeScript seemed to be inevitable. And here we are.
+It didn't end up succeeding, but the fact there were people out there willing to try this demonstrated the desire for performance in the community. At some point a port was likely to succeed, and if it wasn't driven by the actual TypeScript team it would probably have landed the ecosystem in a tricky situation. A port of TypeScript, to a language other than TypeScript, seemed to be inevitable. And here we are.
 
 ## Performance
 
@@ -122,6 +122,6 @@ Pragmatism is the TypeScript way. Go is a pragmatic choice.
 
 ## Conclusion
 
-The ecosystem demanded a faster TypeScript. Performance cannot be ignored these days.  As a consequence, some kind of port of TypeScript was bound to happen. If we accept that view, and I think we should, then what next? Well, the way that the TypeScript team has started executing on the migration fills us with confidence. The TypeScript team are talented, pragmatists and wise.
+The ecosystem demanded a faster TypeScript. Performance cannot be ignored these days.  As a consequence, some kind of port of TypeScript was bound to happen. If we accept that view, then what next? Well, the way that the TypeScript team has started executing on the migration fills us with confidence. The TypeScript team are talented, they are pragmatists and their choices are wise.
 
 This is going to Go well.
