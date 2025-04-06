@@ -1,6 +1,6 @@
 # TypeScript Go considered brilliant
 
-TypeScript is being ported to Go. This is known as "TypeScript 7". It's quite likely that you know this by now, as there have been excellent communications from the TypeScript team in a variety of forums. In fact, hats off to the team; it's been an object lesson in how to communicate well; straightforward, clear and open.
+TypeScript is [being ported to Go](https://devblogs.microsoft.com/typescript/typescript-native-port/). This is known as "TypeScript 7" (it is currently on 5.8). It's quite likely that you know this by now, as there have been excellent communications from the TypeScript team in a variety of forums. In fact, hats off to the team; it's been an object lesson in how to communicate well; straightforward, clear and open.
 
 There's no shortage of content out there detailing what is known about the port. This piece is not that. Rather, it's the reflections of two people in the TypeScript community. What our thoughts, feelings and reflections on the port are.
 
@@ -67,7 +67,7 @@ Given how broad the TypeScript community is, this is perhaps not the concern tha
 
 Another angle on this, is wondering if the TypeScript team might become less involved with TC39 (the committee that develops the JavaScript language specification). TypeScript have been instrumental in language development over the years, from optional chaining to decorators and beyond. As the TypeScript team will be writing less TypeScript, there's a view that they might become less directly involved in influencing the development of JavaScript.
 
-Ashley is not worried about this. The Principal Product Manager of TypeScript, Daniel Rosenwasser, recently became one of the [two incoming TC39 Facilitators](https://github.com/tc39/agendas/blob/main/2025/TC39%20Chair%20Group%20Election%20-%20106th%20Meeting.pdf). The importance of having the TypeScript teams input into the evolution of JavaScript remains the same regardless of which language is used to implement TypeScript's analysis of JavaScript.
+Ashley, who is one of Bloomberg's TC39 delegates, is not worried about this. The Principal Product Manager of TypeScript, Daniel Rosenwasser, recently became one of the [two incoming TC39 Facilitators](https://github.com/tc39/agendas/blob/main/2025/TC39%20Chair%20Group%20Election%20-%20106th%20Meeting.pdf). The importance of having the TypeScript teams input into the evolution of JavaScript remains the same regardless of which language is used to implement TypeScript's analysis of JavaScript.
 
 ## Interacting with TypeScript
 
@@ -76,7 +76,7 @@ There are four primary ways to interact with the TypeScript package.
 - Via its command line interface `tsc`
     - There will still be a CLI and it sounds like the goal will be very close compatibility. So it may change to be Go and you would still be able to interact with the CLI in the same way
 - Via its JavaScript API, importing it as a module `import ts from "typescript"`
-    - The TypeScript team are still working on this part. It's almost certain that there will be changes here, but exactly how different they are is not yet known.
+    - The TypeScript team are still working on this part. There will still be a JavaScript API, though it's almost certain that there will be changes here, but exactly how different they are is not yet known.
     - One core question is if the currently synchronous API will need to become asynchronous due to calling Go, as this can be [a difficult change to migrate to](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/). The good news here is that [it looks like it will be able to retain a synchronous API](https://github.com/microsoft/typescript-go/pull/711).
 - Via the language server `tsserver`
     - Editors such as VSCode, and even linters, can interact with TypeScript via its language server.
@@ -102,9 +102,9 @@ It's very early days, but we know for sure that the internal APIs of TypeScript 
 1. With type checking
 2. Without type checking; transpilation only
 
-It's very unlikely that TypeScript 7 will work with `ts-loader`s type checking mode, without significant refactoring. However, it's quite likely that `ts-loader` might be able to support transpilation only mode with minimal changes. This mode only really depends on the [`transpileModule`](https://github.com/TypeStrong/ts-loader/blob/847a24936aa12fa18dab21ca8ec37595cadc72c6/src/index.ts#L644-L650) API of TypeScript. If the `transpileModule` API lands, then the transpilation only mode of `ts-loader` should just work. On the other hand, this might be the natural end of the road for the type checking mode of `ts-loader`. 
+It's very unlikely that TypeScript 7 will work with `ts-loader`s type checking mode, without significant refactoring. However, it's quite likely that `ts-loader` might be able to support transpilation only mode with minimal changes. This mode only really depends on the [`transpileModule`](https://github.com/TypeStrong/ts-loader/blob/847a24936aa12fa18dab21ca8ec37595cadc72c6/src/index.ts#L644-L650) API of TypeScript. If the `transpileModule` API lands, then the transpilation only mode of `ts-loader` should just work. On the other hand, this might be the natural end of the road for the type checking mode of `ts-loader`.
 
-Ashley is the author of [`ts-blank-space`](https://github.com/bloomberg/ts-blank-space) (a TypeScript to JavaScript transform that avoids the need for source-maps), also depends on TypeScript's API so may be affected by the port. It's too early to say but the change here may turn into an opportunity. A not uncommon request of `ts-blank-space` is to investigate using a different parser. This is because while `ts-blank-space` itself is very small and only uses TypeScript's parsing API, this is not an isolated part of TypeScript, and so still includes the whole type checker. For projects that already depend on TypeScript there is no added cost, but it makes `ts-blank-space` less appealing for use-cases that only use `ts-blank-space`.
+Ashley is the author of [`ts-blank-space`](https://github.com/bloomberg/ts-blank-space) (a TypeScript to JavaScript transform that avoids the need for source-maps), also depends on TypeScript's API so may be affected by the port. It's too early to say but the change here may turn into an opportunity. A not uncommon request of `ts-blank-space` is to investigate using a different parser. This is because while `ts-blank-space` itself is very small and only uses TypeScript's parsing API, this is not an isolated part of TypeScript, and so still ends up importing the whole type checker. For projects that already depend on TypeScript there is no added cost, but it makes `ts-blank-space` less appealing for use-cases that are not already depending on TypeScript.
 
 Some tooling will have a natural path forwards.  For instance, `typescript-eslint` will continue onwards with TypeScript 7. The TypeScript team are planning to help with typed linting with the new, faster APIs.  So this means that ESLint (which many people are used to using), will become faster, as TypeScript becomes faster.
 
@@ -119,6 +119,27 @@ If John was to guess what the team might have picked he would have either said R
 The Go choice represents pragmatism; which is very much a TypeScript ethos. In fact if you look at the [TypeScript Design goals](https://github.com/microsoft/TypeScript/wiki/TypeScript-Design-Goals), you can see how TypeScript has always espoused a pragmatic approach. Perhaps most famously by having "soundness" as a "non-goal". Instead, striking a balance between correctness and productivity.
 
 Pragmatism is the TypeScript way. Go is a pragmatic choice.
+
+## Is this evidence that JavaScript is slow?
+
+This is evidence that JavaScript can be a slow language to implement a type-checker. To re-purpose a quote from Anders in this ['why go' post](https://github.com/microsoft/typescript-go/discussions/411#discussioncomment-12476218a):
+
+> No single language is perfect for every task
+
+The task of type-checking is an intensive one. One way to think of type-checking is that it is taking the program it is checking, emulating executing every line of code, and detecting when the emulation breaks a rule. So the larger a program is, the more work there is to do. When the type-checker is written in a dynamic language this means that it requires another program to run it. For TypeScript this means we effectively have a JavaScript engine, running the TypeScript checker which is running an emulation of another program. It's not a surprise that if the type-checker itself can be run natively that it will run noticeable faster.
+
+Going ten times faster with Go has been attributed to roughly 3.5 times faster by being native, and another speed up comes from be being able to run more in parallel ([source](https://youtu.be/10qowKUW82U?t=538)).
+
+Considering how much more work it is to execute a dynamic language like JavaScript than to execute a pre-compiled native binary, if anything it's amazing that the switch to native isn't a larger difference. This shows how much work has gone into V8, the JavaScript engine used by Node.js, to execute JavaScript very effectively.
+
+It is possible to run write JavaScript programs that do work in parallel today, but the APIs to do this efficiently are things like the low-level [`SharedArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer), where you are now dealing with the raw bytes. There is a Stage 1 proposal to add ["Shared Structs"](https://github.com/tc39/proposal-structs?tab=readme-ov-file#shared-structs) to JavaScript - if this progresses it will be interesting to see JavaScript programs more easily benefit from using multiple cores.
+
+There are still many benefits to using JavaScript for other tasks. Just some of the benefits:
+
+- tend to be smaller in size, due to having higher-level concepts
+- easier to combine together dynamically, great for 3rd party plugin ecosystems
+- easier to modify while they are still running, which is great for UI development
+- are not specific to a particular operating systems and CPU architecture
 
 ## Conclusion
 
