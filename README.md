@@ -10,7 +10,7 @@ It's going to be a somewhat unstructured wander through our reactions and hopes.
 
 John Reilly is a software engineer and an early adopter of TypeScript. He worked on Definitely Typed, the home of high quality type definitions which allow the integration of TypeScript and JavaScript. John wrote the [history of Definitely Typed](https://johnnyreilly.com/definitely-typed-the-movie) and featured in the TypeScript documentary. He also worked (and works) on `ts-loader`, the webpack loader for TypeScript. In his day job, he works at Investec, a South African bank and is based in London. The greatest city on earth (in his opinion).
 
-Ashley is a software engineer who has the pleasure of living not too far from John, occasionally joining him on his morning walks where we can kick start our day talking about TypeScript together. Ashley first started writing TypeScript when it was on version 1.8 and has thoroughly enjoyed following its evolution. He has [contributed to TypeScript](https://github.com/microsoft/TypeScript/pulls?q=author%3Aacutmore+is%3Aclosed) and works at Bloomberg as part of the JavaScript-infrastructure-and-tooling team. Opinions are his own.
+Ashley is a software engineer who has the pleasure of living not too far from John, occasionally joining him on his morning walks, where we can kick start our day talking about TypeScript together. Ashley first started writing TypeScript when it was on version 1.8 and has thoroughly enjoyed following its evolution. He has [contributed to TypeScript](https://github.com/microsoft/TypeScript/pulls?q=author%3Aacutmore+is%3Aclosed) and works at Bloomberg as part of the JavaScript-infrastructure-and-tooling team. Opinions are his own.
 
 ## Was a port necessary?
 
@@ -53,7 +53,7 @@ Where John works, at Investec, there are many engineers who use VS Code, and spe
 
 As a consequence, engineers should be incrementally more effective, given that there are less pauses in their workflow.
 
-The same incremental gain applies to builds. As our engineers build applications, they run TypeScript builds on their machines and in a Continuous Integration context.  These will all be faster than they were before. We'll continually bank a performance improvement which is a benefit.
+The same incremental gain applies to builds. As our engineers build applications, they run TypeScript builds on their machines and in a Continuous Integration context.  These will all be faster than they were before. We'll continually experience a performance improvement which is a benefit.
 
 This, of course, is not Investec specific. Rather this is a general improvement that everyone will benefit from. Across the world, wherever anyone writes and builds TypeScript, they will do so faster.
 
@@ -63,7 +63,7 @@ Many languages have [bootstrapping compilers](https://en.wikipedia.org/wiki/Boot
 
 Of all the aspects about the Go port, this one was the one that gave John most anxiety. (It's John writing this by the way, writing in the third person feels very strange.) The TypeScript team will be moving away from writing TypeScript in their day to day lives. They won't abandon it of course, but they will certainly write less TypeScript and more Go. An implication of this is that there will be reduced [dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) - which means less direct feedback to the makers of TypeScript about what it's like to write TypeScript.
 
-Given how broad the TypeScript community is, this is perhaps not the concern that it might be. The team are very connected with the community and even if they are writing TypeScript less, people who are writing more will be sure to be vocal. It's maybe worth remembering that for most of the time TypeScript has been around, the team has often written TypeScript in a style that is not necessarily representative of the broader community.  We're thinking here of classes (talked about below), and until recently modules. Jake Bailey's mammoth work to [migrate the TypeScript codebase to use modules](https://devblogs.microsoft.com/typescript/typescripts-migration-to-modules/), the codebase used namespaces.  This didn't stop TypeScript working with on improving support for these JavaScript features at all.  So it seems reasonable we need not fear.
+Given how broad the TypeScript community is, this is perhaps not the concern that it might be. The team are very connected with the community and even if they are writing TypeScript less, people who are writing more will be sure to be vocal. It's maybe worth remembering that for most of the time TypeScript has been around, the team has often written TypeScript in a style that is not necessarily representative of the broader community.  We're thinking here of classes (talked about below), and until recently modules. Before Jake Bailey's mammoth work to [migrate the TypeScript codebase to use modules](https://devblogs.microsoft.com/typescript/typescripts-migration-to-modules/), the codebase used namespaces.  This didn't stop TypeScript working with on improving support for these JavaScript features at all.  So it seems reasonable we need not fear.
 
 Another angle on this, is wondering if the TypeScript team might become less involved with TC39 (the committee that develops the JavaScript language specification). TypeScript have been instrumental in language development over the years, from optional chaining to decorators and beyond. As the TypeScript team will be writing less TypeScript, there's a view that they might become less directly involved in influencing the development of JavaScript.
 
@@ -71,10 +71,10 @@ Ashley, who is one of Bloomberg's TC39 delegates, is not worried about this. The
 
 ## Interacting with TypeScript
 
-There are four primary ways to interact with the TypeScript package.
+There are four primary ways to interact with the TypeScript package. Let's have a think about how these might change.
 
 - Via its command line interface `tsc`
-    - There will still be a CLI and it sounds like the goal will be very close compatibility. So it may change to be Go and you would still be able to interact with the CLI in the same way
+    - There will still be a CLI and it sounds like the goal will be very close compatibility. The implementation may change to be Go, but you would still be able to interact with the CLI in the same way
 - Via its JavaScript API, importing it as a module `import ts from "typescript"`
     - The TypeScript team are still working on this part. There will still be a JavaScript API, though it's almost certain that there will be changes here, but exactly how different they are is not yet known.
     - One core question is if the currently synchronous API will need to become asynchronous due to calling Go, as this can be [a difficult change to migrate to](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/). The good news here is that [it looks like it will be able to retain a synchronous API](https://github.com/microsoft/typescript-go/pull/711).
@@ -86,7 +86,7 @@ There are four primary ways to interact with the TypeScript package.
 
 ## Ecosystem tools
 
-This will have an impact on ecosystem tooling.  John is the maintainer of [`ts-loader`](https://github.com/TypeStrong/ts-loader), a widely used webpack loader for TypeScript. This loader depends upon TypeScript APIs which have been unchanged in years.
+Let's drill further into tools that use TypeScript internally.  There will be an impact.  John is the maintainer of [`ts-loader`](https://github.com/TypeStrong/ts-loader), a widely used webpack loader for TypeScript. This loader depends upon TypeScript APIs which have been unchanged in years.
 
 In fact, in John went so far as to comment as such on [Bluesky in early March](https://bsky.app/profile/johnnyreilly.com/post/3ljexijnmdk2m):
 
@@ -116,7 +116,7 @@ Given that TypeScript decided to move away from being written with TypeScript, m
 
 If John was to guess what the team might have picked he would have either said Rust or Zig (what Bun is built with).  Go felt like a slightly leftfield choice, but upon reflection it completely makes sense. ESBuild is written in Go, so there's prior art. Go has a garbage collector (Rust does not) which means the work of porting the code is significantly reduced.  Likewise, C# is all about `class`es and so a port from TypeScript (which makes only light use of `class`es in the compiler codebase) to C# would be uphill work.
 
-The Go choice represents pragmatism; which is very much a TypeScript ethos. In fact if you look at the [TypeScript Design goals](https://github.com/microsoft/TypeScript/wiki/TypeScript-Design-Goals), you can see how TypeScript has always espoused a pragmatic approach. Perhaps most famously by having "soundness" as a "non-goal". Instead, striking a balance between correctness and productivity.
+The Go choice represents pragmatism; which is very much a TypeScript ethos. In fact if you look at the [TypeScript Design goals](https://github.com/microsoft/TypeScript/wiki/TypeScript-Design-Goals), you can see how TypeScript has always espoused a pragmatic approach. Perhaps most famously by having soundness as a "non-goal". Instead, striking a balance between correctness and productivity.
 
 Pragmatism is the TypeScript way. Go is a pragmatic choice.
 
@@ -146,3 +146,7 @@ There are still many benefits to using JavaScript for other tasks. Just some of 
 The ecosystem demanded a faster TypeScript. Performance cannot be ignored these days.  As a consequence, some kind of port of TypeScript was bound to happen. If we accept that view, then what next? Well, the way that the TypeScript team has started executing on the migration fills us with confidence. The TypeScript team are talented, they are pragmatists and their choices are wise.
 
 This is going to Go well.
+
+## Credits
+
+Thanks to Jake Bailey, of the TypeScript team, for reviewing this piece - greatly appreciated! Also to Josh Goldberg to writing up his classification of what makes up TypeScript; many thanks!
