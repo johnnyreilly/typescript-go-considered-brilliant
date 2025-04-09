@@ -51,7 +51,7 @@ What are the implications of these changes to the TypeScript ecosystem? Put simp
 
 Where John works, at Investec, there are many engineers who use VS Code, and spend part of their engineering life writing TypeScript and JavaScript. All those engineers will benefit from a snappier development experience. When they open up a project in VS Code, the time taken for the language service to wake up will drop dramatically. As they refactor their code, the experience will be faster. The "time to red squiggly line" metric will decrease. And that's a good thing.
 
-As a consequence, engineers should be incrementally more effective, given that there are less pauses in their workflow.
+As a consequence, engineers should be incrementally more effective, given that there are fewer pauses in their workflow.
 
 The same incremental gain applies to builds. As our engineers build applications, they run TypeScript builds on their machines and in a Continuous Integration context.  These will all be faster than they were before. We'll continually experience a performance improvement which is a benefit.
 
@@ -67,7 +67,7 @@ Given how broad the TypeScript community is, this is perhaps not the concern tha
 
 Another angle on this, is wondering if the TypeScript team might become less involved with TC39 (the committee that develops the JavaScript language specification). TypeScript have been instrumental in language development over the years, from optional chaining to decorators and beyond. As the TypeScript team will be writing less TypeScript, there's a view that they might become less directly involved in influencing the development of JavaScript.
 
-Ashley, who is one of Bloomberg's TC39 delegates, is not worried about this. The Principal Product Manager of TypeScript, Daniel Rosenwasser, recently became one of the [two incoming TC39 Facilitators](https://github.com/tc39/agendas/blob/main/2025/TC39%20Chair%20Group%20Election%20-%20106th%20Meeting.pdf). The importance of having the TypeScript teams input into the evolution of JavaScript remains the same regardless of which language is used to implement TypeScript's analysis of JavaScript.
+Ashley, who is one of Bloomberg's TC39 delegates, is not worried about this. The Principal Product Manager of TypeScript, Daniel Rosenwasser, recently became one of the [two incoming TC39 Facilitators](https://github.com/tc39/agendas/blob/main/2025/TC39%20Chair%20Group%20Election%20-%20106th%20Meeting.pdf). The importance of having the TypeScript team's input into the evolution of JavaScript remains the same regardless of which language is used to implement TypeScript's analysis of JavaScript.
 
 ## Interacting with TypeScript
 
@@ -122,7 +122,7 @@ Pragmatism is the TypeScript way. Go is a pragmatic choice.
 
 ## Is this evidence that JavaScript is slow?
 
-This is evidence that JavaScript can be a slow language to implement a type-checker. To re-purpose a quote from Anders in this ['why go' post](https://github.com/microsoft/typescript-go/discussions/411#discussioncomment-12476218a):
+This is evidence that JavaScript can be a slow language to implement a type-checker. To re-purpose a quote from Anders in this ['why Go' post](https://github.com/microsoft/typescript-go/discussions/411#discussioncomment-12476218a):
 
 > No single language is perfect for every task
 
@@ -132,7 +132,7 @@ Going ten times faster with Go has been attributed to roughly 3.5 times faster b
 
 Considering how much more work it is to execute a dynamic language like JavaScript than to execute a pre-compiled native binary, if anything it's amazing that the switch to native isn't a larger difference. This shows how much work has gone into V8, the JavaScript engine used by Node.js, to execute JavaScript very effectively.
 
-It is possible to run write JavaScript programs that do work in parallel today, but the APIs to do this efficiently are things like the low-level [`SharedArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer), where you are now dealing with the raw bytes. There is a Stage 1 proposal to add ["Shared Structs"](https://github.com/tc39/proposal-structs?tab=readme-ov-file#shared-structs) to JavaScript - if this progresses it will be interesting to see JavaScript programs more easily benefit from using multiple cores.
+It is possible to write JavaScript programs that do work in parallel today, but the APIs to do this efficiently are things like the low-level [`SharedArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer), where you are now dealing with the raw bytes. There is a Stage 1 proposal to add ["Shared Structs"](https://github.com/tc39/proposal-structs?tab=readme-ov-file#shared-structs) to JavaScript - if this progresses it will be interesting to see JavaScript programs more easily benefit from using multiple cores.
 
 There are still many benefits to using JavaScript for other tasks. Just some of the benefits:
 
